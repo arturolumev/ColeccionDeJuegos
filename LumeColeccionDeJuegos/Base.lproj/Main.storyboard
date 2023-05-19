@@ -81,19 +81,26 @@
                                     <action selector="eliminarTapped:" destination="lSY-jC-fCi" eventType="touchUpInside" id="F8K-Ze-e3V"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcR-Cb-SWQ">
+                                <rect key="frame" x="47" y="429" width="320" height="216"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1gE-cG-4iD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="K7v-B3-Ya8" firstAttribute="width" secondItem="9t3-zG-oyz" secondAttribute="width" id="BB9-nD-pUw"/>
                             <constraint firstItem="K7v-B3-Ya8" firstAttribute="top" secondItem="9t3-zG-oyz" secondAttribute="bottom" constant="20" id="FPv-aF-e8m"/>
+                            <constraint firstItem="wcR-Cb-SWQ" firstAttribute="top" secondItem="90H-hY-XVa" secondAttribute="bottom" constant="8" symbolic="YES" id="Fqz-Hc-c9u"/>
                             <constraint firstItem="9t3-zG-oyz" firstAttribute="top" secondItem="1gE-cG-4iD" secondAttribute="top" constant="32" id="Gdr-fd-KLG"/>
                             <constraint firstItem="BEc-ex-6E3" firstAttribute="top" secondItem="K7v-B3-Ya8" secondAttribute="bottom" constant="20" id="GzR-gY-qVB"/>
                             <constraint firstItem="90H-hY-XVa" firstAttribute="centerX" secondItem="1gE-cG-4iD" secondAttribute="centerX" id="PnI-8k-E7l"/>
+                            <constraint firstItem="wcR-Cb-SWQ" firstAttribute="centerX" secondItem="90H-hY-XVa" secondAttribute="centerX" id="TLY-g7-NbW"/>
+                            <constraint firstItem="wcR-Cb-SWQ" firstAttribute="centerX" secondItem="1gE-cG-4iD" secondAttribute="centerX" id="UUq-qe-kWS"/>
                             <constraint firstItem="9t3-zG-oyz" firstAttribute="centerX" secondItem="1gE-cG-4iD" secondAttribute="centerX" id="ZGu-2E-teE"/>
                             <constraint firstItem="BEc-ex-6E3" firstAttribute="centerX" secondItem="1gE-cG-4iD" secondAttribute="centerX" id="ZqC-hb-21r"/>
                             <constraint firstItem="90H-hY-XVa" firstAttribute="top" secondItem="BEc-ex-6E3" secondAttribute="bottom" constant="15" id="cbe-S3-qkM"/>
                             <constraint firstItem="K7v-B3-Ya8" firstAttribute="centerX" secondItem="1gE-cG-4iD" secondAttribute="centerX" id="mto-uA-nZB"/>
+                            <constraint firstItem="wcR-Cb-SWQ" firstAttribute="centerX" secondItem="DkA-qG-508" secondAttribute="centerX" id="rzo-RH-mRz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kD2-Fa-x7j">
@@ -112,6 +119,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="agregarActualizarBoton" destination="BEc-ex-6E3" id="rik-k5-gjN"/>
+                        <outlet property="categoriaPickerView" destination="wcR-Cb-SWQ" id="fMZ-KS-Ckb"/>
                         <outlet property="eliminarBoton" destination="90H-hY-XVa" id="uQ2-xc-XCN"/>
                         <outlet property="imageView" destination="9t3-zG-oyz" id="iBx-oi-pBr"/>
                         <outlet property="tituloTextField" destination="K7v-B3-Ya8" id="hnC-g0-EV4"/>
@@ -119,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFy-ec-hZ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="84"/>
+            <point key="canvasLocation" x="1828.985507246377" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s1j-uQ-AQV">

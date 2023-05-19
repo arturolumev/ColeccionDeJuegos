@@ -11,14 +11,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     var juegos : [Juego] = []
+    var categorias : [Categoria] = []
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
+            try categorias = context.fetch(Categoria.fetchRequest())
             try juegos = context.fetch(Juego.fetchRequest())
             tableView.reloadData()
         } catch {
-            
+            print("Error al obtener los juegos y categorias: \(error)")
         }
     }
     
@@ -29,19 +32,59 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let juego = juegos[indexPath.row]
-        cell.textLabel?.text = juego.titulo
-        cell.imageView?.image = UIImage(data: (juego.imagen!))
+        
+        var textoCelda = juego.titulo ?? "" // Asegúrate de que juego.titulo sea desempaquetado correctamente
+        
+        if let categoria = juego.categoria {
+            textoCelda += " - \(categoria)"
+        }
+        
+        cell.textLabel?.text = textoCelda
+        cell.imageView?.image = UIImage(data: juego.imagen!)
+        
+        print(cell)
+        
+//        cell.textLabel?.text = juego.titulo
+//        cell.textLabel?.text = juego.categoria
+//        cell.imageView?.image = UIImage(data: (juego.imagen!))
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let juego = juegos[indexPath.row]
-        performSegue(withIdentifier: "juegoSegue", sender: juego)
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.setEditing(true, animated: true)
+        
+        if tableView.isEditing {
+            // Realiza las acciones de edición, como editar la celda
+            // según tus necesidades
+            let juego = juegos[indexPath.row]
+            performSegue(withIdentifier: "juegoSegue", sender: juego)
+            print("Editar celda en el índice: \(indexPath.row)")
+        }
+        
+//        let juego = juegos[indexPath.row]
+//        performSegue(withIdentifier: "juegoSegue", sender: juego)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let siguienteVC = segue.destination as! JuegosViewController
-        siguienteVC.juego = sender as? Juego
+//        if segue.identifier == "juegoSegue" {
+//            let siguienteVC = segue.destination as! JuegosViewController
+////            siguienteVC.juego = sender as? Juego
+////            siguienteVC.categoriaSeleccionada = (sender as? Juego)?.categoria
+//        }
+//        let siguienteVC = segue.destination as! JuegosViewController
+//        siguienteVC.juego = sender as? Juego
+        
+        if segue.identifier == "juegoSegue" {
+            let siguienteVC = segue.destination as! JuegosViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let juego = juegos[indexPath.row]
+                siguienteVC.juego = juego
+                siguienteVC.tableView = tableView
+            }
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -71,9 +114,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.isEditing = true
+        
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsSelectionDuringEditing = true
+        tableView.setEditing(true, animated: false)
     }
 }
 

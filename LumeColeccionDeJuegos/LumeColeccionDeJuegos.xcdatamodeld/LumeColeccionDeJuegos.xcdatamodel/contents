@@ -4,12 +4,12 @@
         <attribute name="nombre" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Juego" representedClassName="Juego" syncable="YES" codeGenerationType="class">
+        <attribute name="categoria" optional="YES" attributeType="String"/>
         <attribute name="imagen" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="titulo" attributeType="String"/>
-        <relationship name="categoria" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Categoria"/>
     </entity>
     <elements>
-        <element name="Juego" positionX="-63" positionY="-18" width="128" height="74"/>
         <element name="Categoria" positionX="-54" positionY="9" width="128" height="44"/>
+        <element name="Juego" positionX="-63" positionY="-18" width="128" height="74"/>
     </elements>
 </model>
